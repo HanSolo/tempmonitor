@@ -97,7 +97,9 @@ public class XmppManager {
         Message message = new Message();
         message.setProperty("celsius", celsius);
         message.setProperty("fahrenheit", fahrenheit);
-        message.setBody("Current temperature: \n" + celsius + " °C\n" + fahrenheit + "°F");
+        message.setBody("Current temperature: \n" +
+                         celsius + " °C\n" +
+                         fahrenheit + " °F");
         sendMessage(message, receiverJID);
     }
 
