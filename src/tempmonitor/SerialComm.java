@@ -38,7 +38,6 @@ public class SerialComm {
     // ******************** Methods *******************************************
     void connect(final String PORT_NAME) throws Exception {
         CommPortIdentifier portIdentifier = CommPortIdentifier.getPortIdentifier(PORT_NAME);
-        System.out.println(portIdentifier.getName());
         if (portIdentifier.isCurrentlyOwned()) {
             System.out.println("Error: Port is currently in use");
         } else {
@@ -58,14 +57,10 @@ public class SerialComm {
                 serialPort.disableReceiveTimeout();
                 serialPort.enableReceiveThreshold(1);
 
-                inputStream   = serialPort.getInputStream();
-                //OutputStream out = serialPort.getOutputStream();
+                inputStream = serialPort.getInputStream();
 
                 Thread serialReaderTask = createSerialReaderThread();
                 serialReaderTask.start();
-
-                //(new Thread(new SerialReader(inputStream))).start();
-                //(new Thread(new SerialWriter(out))).start();
 
             } else {
 
