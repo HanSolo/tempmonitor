@@ -66,7 +66,6 @@ public class XmppManager {
     // ******************* Methods ********************************************
     public void performLogin(final String USERNAME, final String PASSWORD) throws XMPPException {
         if (connection != null && connection.isConnected()) {
-            connection.login(USERNAME, PASSWORD);
             connection.login(USERNAME, PASSWORD, resource);
             System.out.println("XMPP connection established as user " + USERNAME);
             setStatus(true, "Measuring data...");
