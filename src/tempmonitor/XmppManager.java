@@ -41,13 +41,9 @@ public class XmppManager {
 
     // ******************* Initialization *************************************
     public void init() throws XMPPException {
-
-        //System.out.println(String.format("Initializing connection to server %1$s port %2$d", server, port));
-
         SmackConfiguration.setPacketReplyTimeout(PACKET_REPLY_TIMEOUT);
 
         config = new ConnectionConfiguration(server, port);
-        //config.setSASLAuthenticationEnabled(false);
         SASLAuthentication.supportSASLMechanism("PLAIN");
         config.setSecurityMode(ConnectionConfiguration.SecurityMode.disabled);
 
@@ -82,11 +78,9 @@ public class XmppManager {
     }
 
     public void setStatus(final boolean AVAILABLE, final String STATUS) {
-
         Presence.Type type = AVAILABLE? Presence.Type.available: Presence.Type.unavailable;
         Presence presence  = new Presence(type, STATUS, 1, Presence.Mode.available);
         presence.setFrom(connection.getUser());
-        //presence.setStatus(STATUS);
         connection.sendPacket(presence);
     }
 
@@ -123,7 +117,6 @@ public class XmppManager {
     }
 
     public void createEntry(String user, String name) throws Exception {
-        //System.out.println(String.format("Add receiver '%1$s' with name %2$s to roster", user, name));
         Roster roster = connection.getRoster();
         roster.createEntry(user, name, null);
     }
@@ -138,14 +131,11 @@ public class XmppManager {
 
     private class XmppPacketListener implements PacketListener {
         @Override public void processPacket(Packet packet) {
-            //if (Message.class.equals(packet.getClass())) {
                 String from = ((Message) packet).getFrom();
                 String body = ((Message) packet).getBody();
-                //System.out.println("Message from " + from + "\n" + body + "\n");
                 if (body.toLowerCase().equals("temp?")) {
                     main.answerTempRequest(from);
                 }
-            //}
         }
     }
 }
