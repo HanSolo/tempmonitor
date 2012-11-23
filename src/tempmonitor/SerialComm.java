@@ -66,7 +66,7 @@ public class SerialComm {
                 serialReaderTask.start();
 
             } else {
-
+                System.out.println("Sorry, only support for serial ports.");
             }
         }
     }
