@@ -36,7 +36,10 @@ public class SerialComm {
 
 
     // ******************** Methods *******************************************
-    void connect(final String PORT_NAME) throws Exception {
+    void connect(final String PORT_NAME) throws gnu.io.NoSuchPortException,
+                                                gnu.io.PortInUseException,
+                                                gnu.io.UnsupportedCommOperationException,
+                                                java.io.IOException {
         CommPortIdentifier portIdentifier = CommPortIdentifier.getPortIdentifier(PORT_NAME);
         if (portIdentifier.isCurrentlyOwned()) {
             System.out.println("Error: Port is currently in use");

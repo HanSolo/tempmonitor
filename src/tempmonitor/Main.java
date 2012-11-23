@@ -1,5 +1,8 @@
 package tempmonitor;
 
+import gnu.io.NoSuchPortException;
+import gnu.io.PortInUseException;
+import gnu.io.UnsupportedCommOperationException;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.FileInputStream;
@@ -54,7 +57,7 @@ public class Main {
                 sendMessage((Double) EVENT.getNewValue(), (Double) EVENT.getOldValue(), receiverJid);
             }
         });
-        } catch (Exception exception) {
+        } catch (NoSuchPortException | PortInUseException | UnsupportedCommOperationException | IOException exception) {
             System.out.println("Error connecting to serial port: " + exception);
         }
     }
